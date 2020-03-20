@@ -34,7 +34,7 @@
   "dependencies": {
     "@babel/cli": "^7.7.0",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.7.0",
     "@types/cucumber": "^6.0.1",
     "@wdio/cli": "^5.16.0",
