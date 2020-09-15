@@ -15,7 +15,7 @@ export default (method, value, selector) => {
   const command = method === 'add' ? 'addValue' : 'setValue';
   const checkValue = value || '';
 
-  checkIfElementExists({ selector, falseCase: false, exactly: 1 });
+  checkIfElementExists(selector, false, 1);
 
   $(selector)[command](checkValue);
 };

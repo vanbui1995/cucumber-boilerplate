@@ -28,6 +28,8 @@ rules:
     - 'error'
     - 2
     - SwitchCase: 1
+  lines-between-class-members:
+    exceptAfterSingleLine: true
   max-len:
     - 'error'
     - 120
@@ -40,7 +42,7 @@ rules:
         - 'When'
         - 'Then'
   require-jsdoc:
-    - 'error'
+    - 'warn'
     - require:
         FunctionDeclaration: true
         MethodDefinition: true

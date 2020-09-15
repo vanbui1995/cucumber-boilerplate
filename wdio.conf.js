@@ -134,6 +134,7 @@ exports.config = {
   cucumberOpts: {
     // <boolean> show full backtrace for errors
     backtrace: false,
+    colors: true,
     // <string[]> module used for processing required features
     requireModule: ['@babel/register'],
     // <boolean< Treat ambiguous definitions as errors
@@ -142,6 +143,7 @@ exports.config = {
     // dryRun: false,
     // <boolean> abort the run on first failure
     failFast: false,
+    format: ['pretty'],
     // <boolean> Enable this config to treat undefined definitions as
     // warnings
     ignoreUndefinedDefinitions: false,

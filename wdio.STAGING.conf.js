@@ -21,7 +21,12 @@ config.capabilities = [
 
 config.headless = true;
 
-config.specs = ['./src/features/**/staging/*.feature'];
+config.specs = ['./src/features/staging/*.feature'];
+
+config.suites = {
+  login: ['./src/features/staging/login.*'],
+  user: ['./src/features/staging/createUser.*'],
+};
 
 config.cucumberOpts.require = [
   './src/steps/staging/given.staging.js',

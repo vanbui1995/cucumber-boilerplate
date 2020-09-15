@@ -1,5 +1,7 @@
+import { checkInURLPath } from '../check';
+
 /**
- * Open the given URL
+ * Redirect the given URL
  * @param  {String}   type Type of navigation (getUrl or site)
  * @param  {String}   page The URL to navigate to
  */
@@ -8,14 +10,13 @@ export default (type, page) => {
    * The URL to navigate to
    * @type {String}
    */
-  let url = type === 'url' ? page : browser.options.baseUrl + page;
+  const url = type === 'url' ? page : browser.options.baseUrl + page;
 
-  if (page === 'base_url') {
-    url = browser.options.baseUrl;
+  if (page === browser.config.baseUrl) {
     $('div#root').waitForExist();
   } else {
     $('#logonIdentifier').waitForExist();
   }
 
-  expect(browser.getUrl()).toMatch(url);
+  checkInURLPath(false, url);
 };

@@ -8,11 +8,7 @@ export default (type, page) => {
    * The URL to navigate to
    * @type {String}
    */
-  let url = type === 'url' ? page : browser.options.baseUrl + page;
-
-  if (page === 'base_url') {
-    url = browser.options.baseUrl;
-  }
+  const url = type === 'url' ? page : browser.options.baseUrl + page;
 
   browser.url(url);
 };

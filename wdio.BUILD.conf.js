@@ -37,18 +37,18 @@ config.services = [
   ],
 ];
 config.path = '/';
-config.beforeFeature = () => {
-  /**
-     * check if static website is up and cancel if not
-     */
-  browser.url('/');
-  const pageTitle = browser.getTitle();
-  if (pageTitle !== 'DEMO APP') {
-    console.error(`Demo app is not up, found ${pageTitle}`);
-    console.log(browser.getPageSource());
-    process.exit(1);
-  }
-};
+// config.beforeFeature = () => {
+//   /**
+//      * check if static website is up and cancel if not
+//      */
+//   browser.url('/');
+//   const pageTitle = browser.getTitle();
+//   if (pageTitle !== 'DEMO APP') {
+//     console.error(`Demo app is not up, found ${pageTitle}`);
+//     console.log(browser.getPageSource());
+//     process.exit(1);
+//   }
+// };
 
 if (process.env.CI) {
   config.outputDir = path.join(__dirname, 'logs');

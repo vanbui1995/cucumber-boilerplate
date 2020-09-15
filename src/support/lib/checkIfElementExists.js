@@ -5,7 +5,7 @@
  * @param  {Number}  exactly   Check if the element exists exactly this number
  *                             of times
  */
-const checkIfElementExists = ({ selector, falseCase = false, exactly = 1 }) => {
+const checkIfElementExists = (selector, falseCase = false, exactly = 1) => {
   /**
    * The number of elements found in the DOM
    * @type {Int}

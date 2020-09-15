@@ -17,8 +17,7 @@ export default (action, type, selector) => {
    * @type {String}
    */
   const method = action === 'click' ? 'click' : 'doubleClick';
-
-  checkIfElementExists({ selector: selector2 });
+  checkIfElementExists(selector2);
 
   $(selector2)[method]();
 };
