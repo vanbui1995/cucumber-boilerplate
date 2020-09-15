@@ -1,245 +1,245 @@
 function onClickToggleElement() {
-    var $el = $(this),
-        $showTarget = $($el.data('show')),
-        $hideTarget = $($el.data('hide')),
-        timeout = $el.data('timeout') || 0;
+  const $el = $(this);
+  const $showTarget = $($el.data('show'));
+  const $hideTarget = $($el.data('hide'));
+  const timeout = $el.data('timeout') || 0;
 
-    setTimeout(
-        function toggleHiddenClass() {
-            $showTarget.removeClass('hidden');
-            $hideTarget.addClass('hidden');
-        },
-        timeout
-    );
+  setTimeout(
+    () => {
+      $showTarget.removeClass('hidden');
+      $hideTarget.addClass('hidden');
+    },
+    timeout
+  );
 }
 
 function displayFirstMessage() {
-    $('#message1').removeClass('hidden');
-    $('#message2').addClass('hidden');
+  $('#message1').removeClass('hidden');
+  $('#message2').addClass('hidden');
 }
 
 function displaySecondMessage() {
-    $('#message1').addClass('hidden');
-    $('#message2').removeClass('hidden');
+  $('#message1').addClass('hidden');
+  $('#message2').removeClass('hidden');
 }
 
 function makeBgRed() {
-    $(this).css('background-color', 'red');
+  $(this).css('background-color', 'red');
 }
 
 function makeBgBlue() {
-    $(this).css('background-color', 'blue');
+  $(this).css('background-color', 'blue');
 }
 
 function detectDrop($el) {
-    var $dropZone = $($el.data('dropzone')),
-        dragOffset = $el.offset(),
-        dropOffset = $dropZone.offset(),
-        dragTop = dragOffset.top,
-        dragRight = (dragOffset.left + $el.outerWidth()),
-        dragBottom = (dragOffset.top + $el.outerHeight()),
-        dragLeft = dragOffset.left,
-        dropTop = dropOffset.top,
-        dropRight = (dropOffset.left + $dropZone.outerWidth()),
-        dropBottom = (dropOffset.top + $dropZone.outerHeight()),
-        dropLeft = dropOffset.left;
+  const $dropZone = $($el.data('dropzone'));
+  const dragOffset = $el.offset();
+  const dropOffset = $dropZone.offset();
+  const dragTop = dragOffset.top;
+  const dragRight = (dragOffset.left + $el.outerWidth());
+  const dragBottom = (dragOffset.top + $el.outerHeight());
+  const dragLeft = dragOffset.left;
+  const dropTop = dropOffset.top;
+  const dropRight = (dropOffset.left + $dropZone.outerWidth());
+  const dropBottom = (dropOffset.top + $dropZone.outerHeight());
+  const dropLeft = dropOffset.left;
 
-    if (
-        (
-            (dragBottom > dropTop) &&
-            (dragTop < dropBottom)
-        ) &&
-        (
-            (dragRight > dropLeft) &&
-            (dragLeft < dropRight)
+  if (
+    (
+      (dragBottom > dropTop)
+            && (dragTop < dropBottom)
+    )
+        && (
+          (dragRight > dropLeft)
+            && (dragLeft < dropRight)
         )
-    ) {
-        $dropZone.text('Dropped!');
-    } else {
-        $dropZone.text('Dropzone');
-    }
+  ) {
+    $dropZone.text('Dropped!');
+  } else {
+    $dropZone.text('Dropzone');
+  }
 }
 
 function handleFormSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    $(this).find('.message').removeClass('hidden');
+  $(this).find('.message').removeClass('hidden');
 }
 
 function handleDataAction(event) {
-    var $target = $($(this).data('target')),
-        data = $(this).data('action'),
-        action = Object.keys(data)[0],
-        val = data[action],
-        state = $(this).data('state') ? !$(this).data('state') : true;
+  const $target = $($(this).data('target'));
+  const data = $(this).data('action');
+  const action = Object.keys(data)[0];
+  const val = data[action];
+  const state = $(this).data('state') ? !$(this).data('state') : true;
 
-    event.preventDefault();
+  event.preventDefault();
 
-    setTimeout(function delayedHandle() {
-        switch (action) {
-            case 'select': {
-                if (state === true) {
-                    $target.val(val).change();
-                } else {
-                    $target.val('1').change();
-                }
-
-                break;
-            }
-
-            case 'toggleClass': {
-                $target.toggleClass(val);
-                break;
-            }
-
-            case 'text': {
-                if (state) {
-                    $target.text(val);
-                } else {
-                    $target.text('');
-                }
-                break;
-            }
-
-            case 'value': {
-                if (state) {
-                    $target.val(val);
-                } else {
-                    $target.val('');
-                }
-                break;
-            }
-
-            case 'create': {
-                if (state) {
-                    $(val).appendTo($target);
-                } else {
-                    $target.empty();
-                }
-
-                break;
-            }
-
-            default: {
-                if (state) {
-                    $target.prop(action, (val === 'true'));
-                } else {
-                    $target.prop(action, (val === 'false'));
-                }
-
-                break;
-            }
+  setTimeout(() => {
+    switch (action) {
+      case 'select': {
+        if (state === true) {
+          $target.val(val).change();
+        } else {
+          $target.val('1').change();
         }
-    }, 500);
 
-    $(this).data('state', state);
+        break;
+      }
+
+      case 'toggleClass': {
+        $target.toggleClass(val);
+        break;
+      }
+
+      case 'text': {
+        if (state) {
+          $target.text(val);
+        } else {
+          $target.text('');
+        }
+        break;
+      }
+
+      case 'value': {
+        if (state) {
+          $target.val(val);
+        } else {
+          $target.val('');
+        }
+        break;
+      }
+
+      case 'create': {
+        if (state) {
+          $(val).appendTo($target);
+        } else {
+          $target.empty();
+        }
+
+        break;
+      }
+
+      default: {
+        if (state) {
+          $target.prop(action, (val === 'true'));
+        } else {
+          $target.prop(action, (val === 'false'));
+        }
+
+        break;
+      }
+    }
+  }, 500);
+
+  $(this).data('state', state);
 }
 
 function handleMousedown(event) {
-    window.dragging = {
-        pageX0: event.pageX,
-        pageY0: event.pageY,
-        elem: this,
-        offset0: $(this).offset()
-    };
+  window.dragging = {
+    pageX0: event.pageX,
+    pageY0: event.pageY,
+    elem: this,
+    offset0: $(this).offset(),
+  };
 
-    function handleDragging(event) {
-        var left = dragging.offset0.left + (event.pageX - dragging.pageX0),
-            top = dragging.offset0.top + (event.pageY - dragging.pageY0);
+  function handleDragging(event) {
+    const left = dragging.offset0.left + (event.pageX - dragging.pageX0);
+    const top = dragging.offset0.top + (event.pageY - dragging.pageY0);
 
-        $(dragging.elem)
-            .offset({
-                top: top,
-                left: left
-            });
+    $(dragging.elem)
+      .offset({
+        top,
+        left,
+      });
 
-        detectDrop($(dragging.elem));
-    }
+    detectDrop($(dragging.elem));
+  }
 
-    function handleMouseup(event) {
-        $('body')
-            .off('mousemove', handleDragging)
-            .off('mouseup', handleMouseup);
-    }
-
+  function handleMouseup(event) {
     $('body')
-        .on('mouseup', handleMouseup)
-        .on('mousemove', handleDragging);
+      .off('mousemove', handleDragging)
+      .off('mouseup', handleMouseup);
+  }
+
+  $('body')
+    .on('mouseup', handleMouseup)
+    .on('mousemove', handleDragging);
 }
 
 function handleKeydown(event) {
-    var $target = $('#testKeyResponse');
+  const $target = $('#testKeyResponse');
 
-    $target.text(event.keyCode);
+  $target.text(event.keyCode);
 }
 
 function openAlert(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    window.alert('I am a alert box!');
+  window.alert('I am a alert box!');
 }
 
 function openConfirm(event) {
-    var $result = $('#confirmResult'),
-        result;
+  const $result = $('#confirmResult');
+  let result;
 
-    event.preventDefault();
+  event.preventDefault();
 
-    result = window.confirm('I am a confirm box!');
+  result = window.confirm('I am a confirm box!');
 
-    $result.text(result);
+  $result.text(result);
 }
 
 function openPrompt(event) {
-    var $result = $('#promptResult'),
-        result;
+  const $result = $('#promptResult');
+  let result;
 
-    event.preventDefault();
+  event.preventDefault();
 
-    result = window.prompt('I am a prompt!');
+  result = window.prompt('I am a prompt!');
 
-    $result.text(result);
+  $result.text(result);
 }
 
 function toggleMoveToElement(event) {
-    $(this).toggleClass('moveToClass');
+  $(this).toggleClass('moveToClass');
 }
 
-$(function () {
-    $('.jsToggleElement')
-        .on('click', onClickToggleElement);
+$(() => {
+  $('.jsToggleElement')
+    .on('click', onClickToggleElement);
 
-    $.cookie('test', 'yumyum');
+  $.cookie('test', 'yumyum');
 
-    $('#toggleMessage')
-        .on('click', displayFirstMessage)
-        .on('dblclick', displaySecondMessage);
+  $('#toggleMessage')
+    .on('click', displayFirstMessage)
+    .on('dblclick', displaySecondMessage);
 
-    $('#toggleBackground')
-        .on('click', makeBgRed)
-        .on('dblclick', makeBgBlue);
+  $('#toggleBackground')
+    .on('click', makeBgRed)
+    .on('dblclick', makeBgBlue);
 
-    $('#draggable')
-        .on('mousedown', handleMousedown);
+  $('#draggable')
+    .on('mousedown', handleMousedown);
 
-    $('#formSubmitTest')
-        .on('submit', handleFormSubmit);
+  $('#formSubmitTest')
+    .on('submit', handleFormSubmit);
 
-    $('[data-action]')
-        .on('click', handleDataAction);
+  $('[data-action]')
+    .on('click', handleDataAction);
 
-    $('body')
-        .on('keydown', handleKeydown);
+  $('body')
+    .on('keydown', handleKeydown);
 
-    $('#openAlert')
-        .on('click', openAlert);
+  $('#openAlert')
+    .on('click', openAlert);
 
-    $('#openConfirm')
-        .on('click', openConfirm);
+  $('#openConfirm')
+    .on('click', openConfirm);
 
-    $('#openPrompt')
-        .on('click', openPrompt);
+  $('#openPrompt')
+    .on('click', openPrompt);
 
-    $('#moveTo')
-        .on('mouseenter mouseleave', toggleMoveToElement);
+  $('#moveTo')
+    .on('mouseenter mouseleave', toggleMoveToElement);
 });

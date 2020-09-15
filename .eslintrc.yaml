@@ -5,9 +5,12 @@ env:
 plugins:
   - wdio
 
+parser: 'babel-eslint'
+
 extends:
   - 'airbnb-base'
-  - plugin:wdio/recommended
+  - 'plugin:wdio/recommended'
+  - 'prettier'
 
 globals:
   assert: true
@@ -19,22 +22,15 @@ parserOptions:
 root: true
 
 rules:
-  comma-dangle:
-    - 'error'
-    - arrays: 'always-multiline'
-      objects: 'always-multiline'
-      imports: 'never'
-      exports: 'never'
-      functions: 'ignore'
   global-require: 'off'
   import/no-extraneous-dependencies: 0
   indent:
     - 'error'
-    - 4
+    - 2
     - SwitchCase: 1
   max-len:
     - 'error'
-    - 100
+    - 120
     - ignorePattern: '\s*\/\^(.*)\$\/,$'
   new-cap:
     - 'error'

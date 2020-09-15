@@ -7,46 +7,46 @@
  * @param  {String}   dimension    Dimension to check (broad or tall)
  */
 export default (selector, falseCase, expectedSize, dimension) => {
-    /**
+  /**
      * The size of the given element
      * @type {Object}
      */
-    const elementSize = $(selector).getSize();
+  const elementSize = $(selector).getSize();
 
-    /**
+  /**
      * Parsed size to check for
      * @type {Int}
      */
-    const intExpectedSize = parseInt(expectedSize, 10);
+  const intExpectedSize = parseInt(expectedSize, 10);
 
-    /**
+  /**
      * The size property to check against
      * @type {Int}
      */
-    let originalSize = elementSize.height;
+  let originalSize = elementSize.height;
 
-    /**
+  /**
      * The label of the checked property
      * @type {String}
      */
-    let label = 'height';
+  let label = 'height';
 
-    if (dimension === 'broad') {
-        originalSize = elementSize.width;
-        label = 'width';
-    }
+  if (dimension === 'broad') {
+    originalSize = elementSize.width;
+    label = 'width';
+  }
 
-    if (falseCase) {
-        expect(originalSize).not.toBe(
-            intExpectedSize,
-            `Element "${selector}" should not have a ${label} of `
+  if (falseCase) {
+    expect(originalSize).not.toBe(
+      intExpectedSize,
+      `Element "${selector}" should not have a ${label} of `
             + `${intExpectedSize}px`
-        );
-    } else {
-        expect(originalSize).toBe(
-            intExpectedSize,
-            `Element "${selector}" should have a ${label} of `
+    );
+  } else {
+    expect(originalSize).toBe(
+      intExpectedSize,
+      `Element "${selector}" should have a ${label} of `
             + `${intExpectedSize}px, but is ${originalSize}px`
-        );
-    }
+    );
+  }
 };

@@ -3,47 +3,47 @@ import isDisplayed from 'src/support/check/isDisplayed';
 let isDisplayedMock;
 
 describe('isDisplayed', () => {
-    let expectToEqual;
-    let expectToNotEqual;
+  let expectToEqual;
+  let expectToNotEqual;
 
-    beforeEach(() => {
-        isDisplayedMock = jest.fn();
-        global.$ = jest.fn().mockReturnValue({
-            isDisplayed: isDisplayedMock,
-        });
-
-        expectToEqual = jest.fn();
-        expectToNotEqual = jest.fn();
-
-        global.expect = jest.fn(() => ({
-            not: {
-                toEqual: expectToNotEqual,
-            },
-            toEqual: expectToEqual,
-        }));
+  beforeEach(() => {
+    isDisplayedMock = jest.fn();
+    global.$ = jest.fn().mockReturnValue({
+      isDisplayed: isDisplayedMock,
     });
 
-    it('Should test if the element is visible', () => {
-        isDisplayed('#elem1', false);
+    expectToEqual = jest.fn();
+    expectToNotEqual = jest.fn();
 
-        _expect(isDisplayedMock).toHaveBeenCalled();
+    global.expect = jest.fn(() => ({
+      not: {
+        toEqual: expectToNotEqual,
+      },
+      toEqual: expectToEqual,
+    }));
+  });
 
-        _expect(expectToEqual).toHaveBeenCalledTimes(1);
-        _expect(expectToEqual).toHaveBeenCalledWith(
-            true,
-            'Expected element "#elem1" to be displayed'
-        );
-    });
+  it('Should test if the element is visible', () => {
+    isDisplayed('#elem1', false);
 
-    it('Should test if the element is not visible', () => {
-        isDisplayed('#elem2', true);
+    _expect(isDisplayedMock).toHaveBeenCalled();
 
-        _expect(isDisplayedMock).toHaveBeenCalledTimes(1);
+    _expect(expectToEqual).toHaveBeenCalledTimes(1);
+    _expect(expectToEqual).toHaveBeenCalledWith(
+      true,
+      'Expected element "#elem1" to be displayed'
+    );
+  });
 
-        _expect(expectToNotEqual).toHaveBeenCalledTimes(1);
-        _expect(expectToNotEqual).toHaveBeenCalledWith(
-            true,
-            'Expected element "#elem2" not to be displayed'
-        );
-    });
+  it('Should test if the element is not visible', () => {
+    isDisplayed('#elem2', true);
+
+    _expect(isDisplayedMock).toHaveBeenCalledTimes(1);
+
+    _expect(expectToNotEqual).toHaveBeenCalledTimes(1);
+    _expect(expectToNotEqual).toHaveBeenCalledWith(
+      true,
+      'Expected element "#elem2" not to be displayed'
+    );
+  });
 });

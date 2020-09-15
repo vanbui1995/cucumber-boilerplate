@@ -7,49 +7,49 @@
  * @param  {String}   expectedText  The text to check against
  */
 export default (elementType, selector, falseCase, expectedText) => {
-    /**
+  /**
      * The command to perform on the browser object
      * @type {String}
      */
-    let command = 'getValue';
+  let command = 'getValue';
 
-    if (
-        ['button', 'container'].includes(elementType)
+  if (
+    ['button', 'container'].includes(elementType)
         || $(selector).getAttribute('value') === null
-    ) {
-        command = 'getText';
-    }
+  ) {
+    command = 'getText';
+  }
 
-    /**
+  /**
      * False case
      * @type {Boolean}
      */
-    let boolFalseCase;
+  let boolFalseCase;
 
-    /**
+  /**
      * The expected text
      * @type {String}
      */
-    let stringExpectedText = expectedText;
+  let stringExpectedText = expectedText;
 
-    /**
+  /**
      * The text of the element
      * @type {String}
      */
-    const elem = $(selector);
-    elem.waitForDisplayed();
-    const text = elem[command]();
+  const elem = $(selector);
+  elem.waitForDisplayed();
+  const text = elem[command]();
 
-    if (typeof expectedText === 'undefined') {
-        stringExpectedText = falseCase;
-        boolFalseCase = false;
-    } else {
-        boolFalseCase = (falseCase === ' not');
-    }
+  if (typeof expectedText === 'undefined') {
+    stringExpectedText = falseCase;
+    boolFalseCase = false;
+  } else {
+    boolFalseCase = (falseCase === ' not');
+  }
 
-    if (boolFalseCase) {
-        expect(text).not.toContain(stringExpectedText);
-    } else {
-        expect(text).toContain(stringExpectedText);
-    }
+  if (boolFalseCase) {
+    expect(text).not.toContain(stringExpectedText);
+  } else {
+    expect(text).toContain(stringExpectedText);
+  }
 };

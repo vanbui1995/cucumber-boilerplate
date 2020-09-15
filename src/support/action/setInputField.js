@@ -8,19 +8,14 @@ import checkIfElementExists from '../lib/checkIfElementExists';
  * @param  {String}   selector Element selector
  */
 export default (method, value, selector) => {
-    /**
-     * The command to perform on the browser object (addValue or setValue)
-     * @type {String}
-     */
-    const command = (method === 'add') ? 'addValue' : 'setValue';
+  /**
+   * The command to perform on the browser object (addValue or setValue)
+   * @type {String}
+   */
+  const command = method === 'add' ? 'addValue' : 'setValue';
+  const checkValue = value || '';
 
-    let checkValue = value;
+  checkIfElementExists({ selector, falseCase: false, exactly: 1 });
 
-    checkIfElementExists(selector, false, 1);
-
-    if (!value) {
-        checkValue = '';
-    }
-
-    $(selector)[command](checkValue);
+  $(selector)[command](checkValue);
 };

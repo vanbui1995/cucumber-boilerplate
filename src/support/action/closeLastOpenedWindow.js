@@ -5,12 +5,12 @@
 /* eslint-disable no-unused-vars */
 export default (obsolete) => {
 /* eslint-enable no-unused-vars */
-    /**
+  /**
      * The last opened window handle
      * @type {Object}
      */
-    const lastWindowHandle = browser.getWindowHandles().slice(-1)[0];
+  const lastWindowHandle = browser.getWindowHandles().slice(-1)[0];
 
-    browser.closeWindow();
-    browser.switchToWindow(lastWindowHandle);
+  browser.closeWindow();
+  browser.switchToWindow(lastWindowHandle);
 };
