@@ -1,10 +1,10 @@
-import checkIfElementExists from '../lib/checkIfElementExists';
+import { checkIfElementExists, getElementFromSelector } from '../utils';
 
 /**
  * Perform an click action on the given element
  * @param  {String}   action  The action to perform (click or doubleClick)
  * @param  {String}   type    Type of the element (link or selector)
- * @param  {String}   selector Element selector
+ * @param  {String | String[]}   selector Element selector
  */
 export default (action, type, selector) => {
   /**
@@ -17,7 +17,11 @@ export default (action, type, selector) => {
    * @type {String}
    */
   const method = action === 'click' ? 'click' : 'doubleClick';
-  checkIfElementExists(selector2);
 
-  $(selector2)[method]();
+  if (Array.isArray(selector2) === false) {
+    checkIfElementExists(selector2);
+  }
+
+  const element = getElementFromSelector(selector2);
+  element[method]();
 };

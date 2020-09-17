@@ -9,23 +9,24 @@ config.capabilities = [
       args: [
         // '--disable-infobars',
         '--window-size=1280,720',
-        '--headless',
+        // '--headless',
         // '--no-sandbox',
         // '--disable-gpu',
         // '--disable-setuid-sandbox',
         // '--disable-dev-shm-usage',
       ],
     },
+    maxInstances: 1,
   },
 ];
 
 config.headless = true;
 
-config.specs = ['./src/features/staging/*.feature'];
+config.specs = ['./src/features/staging/**/*.feature'];
 
 config.suites = {
-  login: ['./src/features/staging/login.*'],
-  user: ['./src/features/staging/createUser.*'],
+  login: ['./src/features/staging/auth/*.feature'],
+  user: ['./src/features/staging/user/delete.feature'],
 };
 
 config.cucumberOpts.require = [

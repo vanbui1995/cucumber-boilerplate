@@ -1,4 +1,5 @@
 import { checkInURLPath } from '../check';
+import waitFor from './waitFor';
 
 /**
  * Redirect the given URL
@@ -13,9 +14,9 @@ export default (type, page) => {
   const url = type === 'url' ? page : browser.options.baseUrl + page;
 
   if (page === browser.config.baseUrl) {
-    $('div#root').waitForExist();
+    waitFor('div#root');
   } else {
-    $('#logonIdentifier').waitForExist();
+    waitFor('#logonIdentifier');
   }
 
   checkInURLPath(false, url);

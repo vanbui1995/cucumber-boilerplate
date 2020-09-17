@@ -4,4 +4,4 @@ Feature: Create a user
 
     Scenario: create new user with John Doe credentials
         Given I sign in with credential "johndoe@planpod.com.au"/"demo@123"
-        Then I create a new user with first name is "Automation", last name is "Test"
+        Then I create a user with first name is "Automation", last name is "Test"
