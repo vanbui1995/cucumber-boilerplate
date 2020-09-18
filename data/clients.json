@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "id": "3b1ccc18-1782-4383-af2a-71fda2d76f35",
+      "type": "client",
+      "attributes": {
+        "firstName": "Automation",
+        "lastName": "Test",
+        "dateOfBirth": "2020-09-16T17:00:00"
+      },
+      "relationships": {
+        "advice": [
+          {
+            "id": "ef17163f-1c4f-49ab-a262-1c845b19c4b3",
+            "type": "advice",
+            "attributes": {
+              "date": "2020-07-15T18:30:00",
+              "adviceType": "soa",
+              "adviceStatus": "completed"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

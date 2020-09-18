@@ -1,0 +1,23 @@
+{
+  "data": {
+    "type": "portfolioSummary",
+    "attributes": {},
+    "relationships": {
+      "current": [
+        {
+          "id": "e09756cd-2a4f-4732-8246-ea0a3d392813",
+          "type": "current",
+          "attributes": {
+            "productDescription": "Hesta Personal Super",
+            "productType": "platform",
+            "owner": "client",
+            "value": {
+              "value": 100000,
+              "format": "currency"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

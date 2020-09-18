@@ -9,7 +9,7 @@ config.capabilities = [
       args: [
         // '--disable-infobars',
         '--window-size=1280,720',
-        // '--headless',
+        '--headless',
         // '--no-sandbox',
         // '--disable-gpu',
         // '--disable-setuid-sandbox',
@@ -26,7 +26,7 @@ config.specs = ['./src/features/staging/**/*.feature'];
 
 config.suites = {
   login: ['./src/features/staging/auth/*.feature'],
-  user: ['./src/features/staging/user/delete.feature'],
+  user: ['./src/features/staging/user/*.feature'],
 };
 
 config.cucumberOpts.require = [

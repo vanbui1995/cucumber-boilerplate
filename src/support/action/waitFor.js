@@ -45,6 +45,6 @@ export default (selector, ms, falseState, state) => {
     boolFalseState = false;
   }
 
-  const element = getElementFromSelector(selector);
+  const element = getElementFromSelector(selector, false);
   element[command](intMs, boolFalseState);
 };

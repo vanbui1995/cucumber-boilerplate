@@ -18,10 +18,6 @@ export default (action, type, selector) => {
    */
   const method = action === 'click' ? 'click' : 'doubleClick';
 
-  if (Array.isArray(selector2) === false) {
-    checkIfElementExists(selector2);
-  }
-
   const element = getElementFromSelector(selector2);
   element[method]();
 };

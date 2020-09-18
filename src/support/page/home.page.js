@@ -1,12 +1,14 @@
 import { clickElement, setInputField, waitFor } from '../action';
 import { checkElementExists } from '../check';
 
+import clientsData from '../../../data/clients.json';
+
 /**
  * Login page
  */
 class HomePage {
   /**
-   * Login method
+   * Create a user method
    *
    * @param {String} firstName User's first name
    * @param {String} lastName User's last name
@@ -33,7 +35,7 @@ class HomePage {
   };
 
   /**
-   * Login method
+   * Delete a user method
    *
    * @param {String} firstName User's first name
    * @param {String} lastName User's last name
@@ -49,6 +51,43 @@ class HomePage {
     clickElement('click', 'button', deleteButtonSelector);
     clickElement('click', 'button', confirmButtonSelector);
     checkElementExists(false, userSelector);
+  };
+
+  /**
+   * Get user
+   */
+  getUser = () => {
+    const fullName = 'Automation Test';
+    const adviceDate = clientsData.data[0].relationships.advice[0].attributes.date;
+    const adviceText = new Date(adviceDate).toLocaleDateString('us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+
+    const userSelector = `span=${fullName}`;
+    const adviceSelector = `span=${adviceText}`;
+    const investmentSelector = 'span=Investments';
+
+    const clientURL = 'https://planpod.azure-api.net/api/advice/client';
+
+    const clientMock = browser.mock(clientURL);
+
+    clientMock.respond(clientsData, {
+      statusCode: 200,
+    });
+
+    browser.url(browser.config.baseUrl);
+
+    waitFor(userSelector);
+    clickElement('click', 'button', userSelector);
+
+    waitFor(adviceSelector);
+    browser.pause(500);
+    clickElement('click', 'button', adviceSelector);
+
+    waitFor(investmentSelector);
+    clickElement('click', 'button', investmentSelector);
   };
 }
 

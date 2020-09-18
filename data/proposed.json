@@ -1,0 +1,34 @@
+{
+  "data": {
+    "id": "5bfccc91-29d1-4ae7-b395-2774116b19dd",
+    "type": "portfolio",
+    "attributes": {
+      "portfolioType": "proposed",
+      "productDescription": "Hesta Personal Super",
+      "productType": "platform",
+      "operation": {
+        "type": "rebalance",
+        "referencePortfolioId": "e09756cd-2a4f-4732-8246-ea0a3d392813",
+        "referenceProductDescription": "Hesta Personal Super",
+        "referenceValue": {
+          "value": 100000,
+          "format": "currency"
+        }
+      },
+      "owner": "client",
+      "value": {
+        "value": 100000,
+        "format": "currency"
+      },
+      "clientBalance": {
+        "value": 0,
+        "format": "currency"
+      },
+      "familyBalance": {
+        "value": 0,
+        "format": "currency"
+      },
+      "inflow": []
+    }
+  }
+}
